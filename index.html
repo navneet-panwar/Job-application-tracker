@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="JobTrail keeps track of job applications in one simple list."
+    />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="/src/style.css" />
+    <title>JobTrail</title>
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="wrap">
+        <h1>JobTrail</h1>
+        <p>A small list to keep track of where I applied.</p>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <section aria-labelledby="summary-heading">
+        <h2 id="summary-heading" class="visually-hidden">Summary</h2>
+        <ul id="summary" class="summary"></ul>
+      </section>
+
+      <section aria-labelledby="list-heading">
+        <div class="list-header">
+          <h2 id="list-heading">Applications</h2>
+          <button id="add-button" class="primary" type="button">
+            + Add application
+          </button>
+        </div>
+
+        <form
+          id="filters"
+          class="filters"
+          role="search"
+          aria-label="Search and filter applications"
+        >
+          <div class="field">
+            <label for="search-input">Search</label>
+            <input
+              id="search-input"
+              name="search"
+              type="search"
+              placeholder="Company or role"
+              autocomplete="off"
+            />
+          </div>
+          <div class="field">
+            <label for="status-filter">Status</label>
+            <select id="status-filter" name="status">
+              <option value="all">All statuses</option>
+            </select>
+          </div>
+        </form>
+
+        <p id="list-count" class="list-count" aria-live="polite"></p>
+        <ul
+          id="application-list"
+          class="cards"
+          aria-label="Application list"
+        ></ul>
+        <p id="empty-message" class="empty" hidden></p>
+      </section>
+    </main>
+
+    <dialog id="form-dialog" aria-labelledby="dialog-title">
+      <form id="application-form" class="app-form" novalidate>
+        <h2 id="dialog-title">Add application</h2>
+
+        <div class="field">
+          <label for="company-input">Company</label>
+          <input
+            id="company-input"
+            name="company"
+            type="text"
+            required
+            maxlength="80"
+          />
+          <p id="company-error" class="error" hidden></p>
+        </div>
+
+        <div class="field">
+          <label for="role-input">Role</label>
+          <input
+            id="role-input"
+            name="role"
+            type="text"
+            required
+            maxlength="80"
+          />
+          <p id="role-error" class="error" hidden></p>
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <label for="status-select">Status</label>
+            <select id="status-select" name="status">
+              <option value="Applied">Applied</option>
+              <option value="Interview">Interview</option>
+              <option value="Offer">Offer</option>
+              <option value="Rejected">Rejected</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="date-input">Date applied</label>
+            <input id="date-input" name="dateApplied" type="date" required />
+            <p id="date-error" class="error" hidden></p>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="notes-input"
+            >Notes <span class="hint">(optional)</span></label
+          >
+          <textarea
+            id="notes-input"
+            name="notes"
+            rows="3"
+            maxlength="500"
+          ></textarea>
+        </div>
+
+        <div class="form-actions">
+          <button id="cancel-button" class="secondary" type="button">
+            Cancel
+          </button>
+          <button class="primary" type="submit">Save</button>
+        </div>
+      </form>
+    </dialog>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
